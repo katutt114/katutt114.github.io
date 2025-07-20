@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selamat Ulang Tahun</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="audio-control">
+    <button id="audioBtn">🔊 Play Music</button>
+  </div>
+
+  <div class="container fade-in">
+    <h1>Selamat Ulang Tahun Bubbbbbbbb</h1>
+    <p>
+      Hari ini mungkin hanya bertambah satu angka dalam hidupmu, tapi bagiku ini adalah momen penting
+      momen untuk mengingat bahwa kamu telah melalui banyak hal dengan kuat, sabar, dan penuh keberanian. 
+      Dan aku merasa beruntung bisa menemanimu dalam sebagian kecil dari perjalanan itu.
+    </p>
+    <p>
+      Terima kasih karena sudah menjadi seseorang yang apa adanya. Kamu tidak pernah mencoba jadi orang lain, 
+      dan justru di situlah letak kekuatanmu. Kamu cerdas, punya prinsip, tahu apa yang kamu inginkan, 
+      dan tetap bisa bersikap hangat di tengah semua itu. Itu bukan hal yang mudah, dan aku sangat menghargainya.
+    </p>
+    <p>
+      Aku tau hidup tidak selalu ringan. Akan ada hari hari sulit, pertanyaan pertanyaan yang belum punya jawaban, 
+      atau rencana yang mungkin belum jadi kenyataan. Tapi kamu tidak harus melewati semua itu sendirian. 
+      Selama aku ada di sini, kamu punya tempat untuk kembali, beristirahat, dan menguatkan diri.
+    </p>
+    <p>
+      Semoga usiamu yang baru membawa ketenangan yang kamu cari, kemantapan atas pilihan yang kamu ambil, 
+      dan kebahagiaan yang tidak perlu dijelaskan kepada siapa pun.
+    </p>
+    <img src="foto.jpg" alt="Foto untuk Bub" class="birthday-photo" />
+    <p class="signature">Eka Ganteng</p>
+
+    <p><!-- Popup Surat Cinta -->
+      <div class="love-letter" id="popupLetter">
+        <div class="letter-content">
+          <h2>💌 Untuk Kamu</h2>
+          <p>
+            Aku mungkin nggak selalu pandai menunjukkan perasaan,
+            tapi hari ini aku cuma mau kamu tahu aku gabisa buat ini sebenernya tapi
+            ya mo gimana lagi.
+          </p>
+          <p>
+            Terima kasih karena sudah jadi dirimu yang luar biasa.
+            Aku bangga dan bersyukur ada kamu.
+          </p>
+          <button onclick="closePopup()">Tutup 💗</button>
+        </div>
+      </div>
+      </p>
+      <button id="readAgainBtn" class="read-again-btn">💌 Baca Lagi</button>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3" />
+    Browser kamu nggak dukung musik 😢
+  </audio>
+
+  <!-- Balon Banyak -->
+<div class="balloons">
+  <!-- Kamu bisa tambah lebih banyak jika mau -->
+  <div class="balloon pink"></div>
+  <div class="balloon purple"></div>
+  <div class="balloon yellow"></div>
+  <div class="balloon blue"></div>
+  <div class="balloon green"></div>
+  <div class="balloon orange"></div>
+</div>
+
+<!-- Kue Ulang Tahun -->
+<div class="cake">
+  🎂
+</div>
+
+  
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('audioBtn');
+  
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '🔇 Pause Music';
+      } else {
+        audio.pause();
+        btn.textContent = '🔊 Play Music';
+      }
+    });
+  
+    // 🎉 Confetti effect
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDuration = 3 + Math.random() * 2 + 's';
+      confetti.style.backgroundColor = ['#f48fb1', '#f06292', '#fce4ec', '#f8bbd0'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(confetti);
+  
+      setTimeout(() => confetti.remove(), 5000);
+    }
+  
+    setInterval(createConfetti, 200);
+
+    // Popup muncul otomatis
+window.onload = function() {
+  setTimeout(() => {
+    document.getElementById('popupLetter').style.display = 'flex';
+  }, 1000); // 1 detik delay setelah halaman dimuat
+};
+
+function closePopup() {
+  document.getElementById('popupLetter').style.display = 'none';
+}
+
+// Tampilkan popup otomatis saat pertama kali
+window.onload = function () {
+  setTimeout(() => {
+    document.getElementById("popupLetter").style.display = "flex";
+  }, 1000);
+};
+
+// Tombol tutup popup
+function closePopup() {
+  document.getElementById("popupLetter").style.display = "none";
+}
+
+// Tombol "Baca Lagi"
+document.getElementById("readAgainBtn").addEventListener("click", () => {
+  document.getElementById("popupLetter").style.display = "flex";
+});
+
+function shootConfetti() {
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    
+    // Acak posisi, warna, durasi, dan rotasi
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = ["#ff69b4", "#ffd700", "#87cefa", "#ffb6c1"][Math.floor(Math.random() * 4)];
+    confetti.style.animationDuration = 2 + Math.random() * 2 + "s";
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    confetti.style.opacity = Math.random();
+
+    document.body.appendChild(confetti);
+
+    // Hapus setelah selesai
+    setTimeout(() => {
+      confetti.remove();
+    }, 4000);
+  }
+}
+
+
+  </script>
+  
+</body>
+</html>
